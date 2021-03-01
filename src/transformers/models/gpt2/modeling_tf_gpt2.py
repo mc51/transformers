@@ -292,6 +292,11 @@ class TFGPT2MainLayer(tf.keras.layers.Layer):
             kwargs_call=kwargs,
         )
 
+        print(f"TFGPT2MainLayer\n")
+        inp = inputs["input_ids"]
+        print(f"Pre: {inp}\n")
+        print(f"Pre: {inp.shape}\n")
+
         if inputs["input_ids"] is not None and inputs["inputs_embeds"] is not None:
             raise ValueError("You cannot specify both input_ids and inputs_embeds at the same time")
         elif inputs["input_ids"] is not None:
@@ -301,6 +306,9 @@ class TFGPT2MainLayer(tf.keras.layers.Layer):
             input_shape = shape_list(inputs["inputs_embeds"])[:-1]
         else:
             raise ValueError("You have to specify either input_ids or inputs_embeds")
+
+        print(f"Post: {inp}\n")
+        print(f"Post: {inp.shape}\n")
 
         if inputs["past"] is None:
             past_length = 0
